@@ -1,0 +1,97 @@
+*******
+corp 
+=> Library
+- react		: "^18",
+- react-dom 	: "^18",
+- next		: "14.0.3"
+=> components, app route, Image, Link, 
+=> Vercel deployment (npx vercel)
+
+
+
+*******
+snippets 
+=> Library 
+- @monaco-editor/react	: "^4.6.0" (code editor for read and write)
+- @prisma/client	: "^5.6.0"
+- next			: "14.0.3"
+- prisma		: "^5.6.0"
+- react			: "^18"
+- react-dom		: "^18"
+
+=> Next Server Action ('use client', 'use server' normally 'use server')
+=> Prisma(CRUD)
+=> Dynamic Routing (slug, file system)
+	- reserved file -> loading.tsx, not-found.tsx, page.tsx, layout.tsx, error.tsx, ...
+=> form action (formData)
+	- useFormState()
+=> Production
+	- dynamic, static management
+=> Caching
+	- On-Demand (forcibly purge a cached response using revalidatePath()
+
+(Features)
+- create, read, update and delete the code snippet
+
+
+
+*******
+discuss  
+=> Library  
+- nextui-org/react	: "^2.2.9"  (UI)
+- zod		  	: "^3.22.4" (Validation)
+- prisma	  	: "^5.7.0"  (ORM) -> SQLiteDB
+- next-auth		: "5.0.0-beta.3" (OAuth with Github)
+- @auth/core	  	: "0.18.1"  (nextAuth)
+- @auth/prisma-adapter	: "1.0.6"
+- next		  	: "14.0.4"  
+- react-dom"		: "^18"
+- react  	  	: "^18"
+	-> Suspense	      (Displaying a fallback (loading skeleton) while content is loading)
+	-> Cache              (to duplicate used function having the same parameter)
+
+(Caching)
+- On-Demand Cache (Make dynamic page to be static at first (building) and then revalidate the page after data change.)
+	-> import {revalidatePath} from "next/cache"
+- Request Memorization (Use cache when fetching the same object from Database)
+
+(React Hooks)
+- useSession (To get information from session - no access of cookies -> static page)
+	-> import { useSession } from "next-auth/react"
+	-> const session = useSession();
+- useFormState (useFormState is a Hook that allows you to update state based on the result of a form action.)
+	-> import { useFormState } from "react-dom"
+	-> const [state, formAction] = useFormState(fn, initialState);
+- useFormStatus (useFormStatus is a Hook that gives you status information of the last form submission.)
+	-> import { useFormStatus } from "react-dom"
+	-> const { pending, data, method, action } = useFormStatus();
+- useSearchParams (get params -> search?term=something)
+	-> import { useSearchParams } from "next/navigation"
+	-> const searchParams = useSearchParams()
+	-> Client components with 'useSearchParams' need to be wrapped with 'Suspense' or you'll get a strage warning at build time
+
+(Etc.)
+- Recursive Components (To show nested replied for every comments and their reply)
+	-> 2 ways 
+		1 - Page component gets data, passes it to child (overfetching of data, duplicate code, slower page load)
+		2 - Child component fetches its own data (workload - really bad) -> improve by using request memorization caching system (Cache from 'react') -> normally used by fetch() function
+* N+1 queries are a performance problem in which the application makes database queries in a loop, instead of making a single query that returns or modifies all the information at once.
+
+- Fetching (we have to decide whether to fetch data from parent or fetch data in child component but less reusable)
+	-> we can fetch data in child component but to make it reusable, we can parse an accept function aguments for props
+
+(Features)
+- OAuth authentication system
+- Topic, Post, Comment elements (create and read)
+- Topic can have many posts, and post can also have many comments (reply is able)
+- Searching System (using useSearchParams to get params to be able to search in database)
+
+
+
+
+
+
+
+
+
+	
