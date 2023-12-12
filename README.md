@@ -1,3 +1,3 @@
 # NextJS-Course
 
-- All of my nextJS coursed
+- All of my nextJS courses
